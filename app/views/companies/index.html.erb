@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Empresas</h1>
+
+<table class="table">
+  <thead class="thead-light">
+    <tr class="text-center">
+      <th scope="col">Nombre</th>
+      <th scope="col">Cantidad de Empleados</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Destruir</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr class="text-center">
+        <td><%= link_to company.name, company %></td>
+        <td><%= company.employees.count%></td>
+        <td><%= link_to 'Editar', edit_company_path(company), class:"btn btn-info" %></td>
+        <td><%= link_to 'Destruir', company, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-warning" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Company', new_company_path, class:"btn btn-primary" %>
