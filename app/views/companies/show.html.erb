@@ -54,7 +54,7 @@
           <%= employee.email %> 
         </td>
         <td class="mb-2">
-          <%= Area.find(employee.area_id).name %> 
+          <%= employee.area.name%> 
         </td>
         <td class="mb-2">
           <%= link_to "Borrar", company_employee_path(@company, employee), method: :delete, class:"btn btn-warning btn-sm" %> 
