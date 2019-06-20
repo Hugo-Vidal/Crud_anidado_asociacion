@@ -5,11 +5,13 @@ class CompaniesController < ApplicationController
   # GET /companies.json
   def index
     @companies = Company.all
+    @company_area = Company.group(:area).count
   end
 
   # GET /companies/1
   # GET /companies/1.json
   def show
+    @employee = Employee.new
   end
 
   # GET /companies/new

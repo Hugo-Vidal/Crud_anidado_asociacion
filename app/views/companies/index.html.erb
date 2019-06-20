@@ -2,26 +2,41 @@
 
 <h1>Empresas</h1>
 
-<table class="table">
-  <thead class="thead-light">
-    <tr class="text-center">
-      <th scope="col">Nombre</th>
-      <th scope="col">Cantidad de Empleados</th>
-      <th scope="col">Editar</th>
-      <th scope="col">Destruir</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @companies.each do |company| %>
+ 
+<% @companies.each do |company| %>
+  <table class="table">
+     <tbody>
+      <thead class="thead-dark">
+        <tr class="text-center">
+          <th scope="col">Nombre</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Destruir</th>
+        </tr>
+      </thead>
       <tr class="text-center">
-        <td><%= link_to company.name, company %></td>
-        <td><%= company.employees.count%></td>
+        <td><%= link_to company.name, company, class:"h3" %></td>
         <td><%= link_to 'Editar', edit_company_path(company), class:"btn btn-info" %></td>
         <td><%= link_to 'Destruir', company, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-warning" %></td>
+        <table class="table container">
+          <thead class="thead-light">
+            <tr class="text-center">
+              <th scope="col">Áreas Empresa</th>
+              <th scope="col">Cantidad Empleados</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% company.employees.group(:area).count.each do |k, v| %>
+              <tr class="text-center">
+                <td> <%= k.name %></td>
+                 <td> <%= v %></td>
+              </tr>
+          </tbody>
+            <% end %>
+        </table>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+<% end %>
+
 
 <%= link_to 'New Company', new_company_path, class:"btn btn-primary" %>

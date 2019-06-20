@@ -1,9 +1,5 @@
 class EmployeesController < ApplicationController
 
-def new
-    @employee = Employee.new(employee_params)
-end
-
 def area_find
     @area_find = Area.find(employee.area_id)
 end
